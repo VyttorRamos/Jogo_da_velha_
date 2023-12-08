@@ -1,0 +1,100 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #fff;
+    background-image: url(img/backimg.jpg);
+
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    visibility: hidden;
+}
+
+.side-panel {
+    text-align: center;
+    margin-left: 7%;
+    margin-right: 7%;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin-left:20px;
+    margin-right: 20px;
+    border:2px  #6132b9;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #6132b9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+button:hover{
+    transition: .5s ease;
+    box-shadow: rgb(209, 58, 217)2px 2px 5px;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    font-size: 50px;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgb(209, 58, 217);
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 47px;
+}
+
+#player1-wins, #player2-wins {
+    display: block;
+    margin-top: 5px;
+}
+#gamemod{
+    display: block;
+}
+.all{
+    text-align: center;
+    display: block;
+}
+.escolhergamemode{
+    margin-bottom: 20%;
+}
+.resetarpartida{
+    margin-top: 10%;
+    visibility: hidden;
+    
+}
+#player2-wins{
+    display: block;
+}
+.mensagemvitoria{
+    display: none;
+}
+#titulo{
+    text-shadow: black 10px 3px 3px;
+}
