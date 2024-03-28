@@ -133,6 +133,7 @@ struct jg_velha{
 };
 
 struct BNaval{
+    int jogador;
     string game[10][10] = {{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},
     { " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},
     { " "," "," ", " ", " ", " ", " ", " ", " ", " "}, { " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},
@@ -147,25 +148,38 @@ struct BNaval{
     { " "," "," ", " ", " ", " ", " ", " ", " ", " "}};
 
 
-    void bnavalchama(){
-        cout << "-------------------" << endl;
-        cout << "F - Fogo | O - Agua" << endl;
-        cout << "-------------------" << endl;
-        for(int i = 0; i < 10; ++i){
-            for (int j = 0; j < 10 ;++j){
-                if(j == 9){
-                    cout << " ";
-                }else{
-                    cout << gamemostra[i][j];
-                    cout << "|";
+    void bnavalchama(int jogador){
+    cout << "-----------------------" << endl;
+    cout << "   ";
+    for(int k = 0; k < 10; ++k){
+        cout << k+1 << " ";
+    }
+    cout << endl;
+    cout << "-----------------------" << endl;
+    for(int i = 0; i < 10; ++i){
+        if(i < 9){
+            cout << i +1 << " |";
+        }else
+        cout << i +1<< "|";
+        for (int j = 0; j < 10 ;++j){
+            if(j == 9){
+                cout << gamemostra[i][j];
+            }else{
+                cout << gamemostra[i][j];
+                cout << "|";
+            }
+        }
+        cout << endl;
+        cout << "-----------------------" << endl;
+    }
+    cout << endl;
+            if(jogador == 1){
+                embarcacaop1();
+            }else if(jogador == 2){
+                embarcacaop2();
+            }else if(jogador == 0){
 
-                    }}
-                    cout<< endl;
-                    cout << "-------------------" << endl;
-
-                }
-            cout<< endl;
-            embarcacaop1();
+            }
          }
 
     bool verificabaixo(int linha, int coluna){
@@ -2117,24 +2131,40 @@ struct BNaval{
                               break;
                 }
             }
-        cout << "-------------------" << endl;
-        cout << "F - Fogo | O - Agua" << endl;
-        cout << "-------------------" << endl;
-        for(int i = 0; i < 10; ++i){
-            for (int j = 0; j < 10 ;++j){
-                if(j == 9){
-                   cout << game[i][j];
-                }else{
-                    cout << game[i][j];
-                    cout << "|";
-
-                    }}
-                    cout<< endl;
-                    cout << "-------------------" << endl;
-
+        Sleep(700);
+        system("cls");
+        cout << "  =====JOGADOR 1=====" << endl;
+        cout << "  F - Fogo | O - Agua" << endl;
+        cout << "_______________________" << endl;
+            cout << "   ";
+            for(int l = 0; l < 10; ++l){
+                cout << l+1 << " ";
+            }
+            cout << endl;
+            cout << "-----------------------" << endl;
+            for(int i = 0; i < 10; ++i){
+                if(i < 9){
+                    cout << i +1 << " |";
+                }else
+                cout << i +1<< "|";
+                for (int j = 0; j < 10 ;++j){
+                    if(j == 9){
+                        cout << game[i][j];
+                    }else{
+                        cout << game[i][j];
+                        cout << "|";
+                    }
                 }
-            cout<< endl;
-         }
+                cout << endl;
+                cout << "-----------------------" << endl;
+            }
+            cout << endl;
+         }//fim for
+         cout << "Tecle enter para continuar..." << endl;
+         cin.get();
+         system("cls");
+         jogador = 2;
+         bnavalchama(jogador);
         }
 
 
@@ -3790,24 +3820,40 @@ struct BNaval{
                               break;
                 }
             }
-        cout << "-------------------" << endl;
-        cout << "F - Fogo | O - Agua" << endl;
-        cout << "-------------------" << endl;
-        for(int i = 0; i < 10; ++i){
-            for (int j = 0; j < 10 ;++j){
-                if(j == 9){
-                   cout << game2[i][j];
-                }else{
-                    cout << game2[i][j];
-                    cout << "|";
-
-                    }}
-                    cout<< endl;
-                    cout << "-------------------" << endl;
-
+        Sleep(700);
+        system("cls");
+        cout << "  =====JOGADOR 2=====" << endl;
+        cout << "  F - Fogo | O - Agua" << endl;
+        cout << "_______________________" << endl;
+            cout << "   ";
+            for(int l = 0; l < 10; ++l){
+                cout << l+1 << " ";
+            }
+            cout << endl;
+            cout << "-----------------------" << endl;
+            for(int i = 0; i < 10; ++i){
+                if(i < 9){
+                    cout << i +1 << " |";
+                }else
+                cout << i +1<< "|";
+                for (int j = 0; j < 10 ;++j){
+                    if(j == 9){
+                        cout << game[i][j];
+                    }else{
+                        cout << game[i][j];
+                        cout << "|";
+                    }
                 }
-            cout<< endl;
+                cout << endl;
+                cout << "-----------------------" << endl;
+            }
+            cout << endl;
          }
+         cout << "Tecle enter para continuar..." << endl;
+         cin.get();
+         system("cls");
+         jogador = 0;
+         bnavalchama(jogador);
         }
 
 
@@ -3817,6 +3863,7 @@ struct BNaval{
 
 
 int main(){
+    int jogador = 1;
     int opcao;
     do{
         jg_velha escolha1;
@@ -3835,7 +3882,7 @@ int main(){
         switch(opcao){
             case 1: escolha1.jogovelhachama();
             break;
-            case 2: escolha2.bnavalchama();
+            case 2: escolha2.bnavalchama(jogador);
             break;
             default:
                 cout << "Opcao Invalida." <<endl;
