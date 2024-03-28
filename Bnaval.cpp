@@ -133,19 +133,23 @@ struct jg_velha{
 };
 
 struct BNaval{
+    int alternaplayer = 1;
     int jogador;
-    string game[10][10] = {{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},
-    { " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},
-    { " "," "," ", " ", " ", " ", " ", " ", " ", " "}, { " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},
-    { " "," "," ", " ", " ", " ", " ", " ", " ", " "}};
-    string game2[10][10] = {{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},
-    { " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},
-    { " "," "," ", " ", " ", " ", " ", " ", " ", " "}, { " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},
-    { " "," "," ", " ", " ", " ", " ", " ", " ", " "}};
-    string gamemostra[10][10] = {{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},
-    { " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},
-    { " "," "," ", " ", " ", " ", " ", " ", " ", " "}, { " "," "," ", " ", " ", " ", " ", " ", " ", " "},{ " "," "," ", " ", " ", " ", " ", " ", " ", " "},
-    { " "," "," ", " ", " ", " ", " ", " ", " ", " "}};
+
+    string game[10][10], game2[10][10], gamemostra[10][10], gamemostrap2[10][10], gamemostrap1[10][10];
+
+    Bnaval(){
+        for(int i = 0; i < 10; ++i){
+            for(int j = 0; j < 10; ++j){
+                game[i][j] = " ";
+                game2[i][j] = " ";
+                gamemostra[i][j] = " ";
+                gamemostrap1[i][j] = " ";
+                gamemostrap2[i][j] = " ";
+            }
+        }
+    }
+
 
 
     void bnavalchama(int jogador){
@@ -164,6 +168,7 @@ struct BNaval{
         for (int j = 0; j < 10 ;++j){
             if(j == 9){
                 cout << gamemostra[i][j];
+                cout << "|";
             }else{
                 cout << gamemostra[i][j];
                 cout << "|";
@@ -178,7 +183,7 @@ struct BNaval{
             }else if(jogador == 2){
                 embarcacaop2();
             }else if(jogador == 0){
-
+                alternajogador();
             }
          }
 
@@ -217,7 +222,7 @@ struct BNaval{
                 }
     }
 
-     bool verificaEsquerda(int linha, int coluna){
+    bool verificaEsquerda(int linha, int coluna){
         bool posicao1 = false, posicao2 = false;
         for(int i = 1; i <= 2; ++i){
               if(game[linha-1][coluna-1-i] == " " && i == 1){
@@ -330,7 +335,7 @@ struct BNaval{
                 }
     }
 
-        bool verificabaixop2(int linha, int coluna){
+    bool verificabaixop2(int linha, int coluna){
         bool posicao1 = false, posicao2 = false;
             for(int i = 1; i <= 2; ++i){
               if(game2[linha-1+i][coluna-1] == " "&& i==1){
@@ -365,7 +370,7 @@ struct BNaval{
                 }
     }
 
-     bool verificaEsquerdap2(int linha, int coluna){
+    bool verificaEsquerdap2(int linha, int coluna){
         bool posicao1 = false, posicao2 = false;
         for(int i = 1; i <= 2; ++i){
               if(game2[linha-1][coluna-1-i] == " " && i == 1){
@@ -487,7 +492,7 @@ struct BNaval{
         cout << "=========================" << endl;
         cout << "________Jogador 1________" << endl;
 
-        for(int k = 0; k < 10; k++){
+        for(int k = 9; k < 10; k++){
             if(k < 4){
                 cout << "Inserindo T1 (Um bloco): " <<endl;
                 cout << "Linha desejada (1 ao 10): " << endl;
@@ -2150,6 +2155,7 @@ struct BNaval{
                 for (int j = 0; j < 10 ;++j){
                     if(j == 9){
                         cout << game[i][j];
+                        cout << "|";
                     }else{
                         cout << game[i][j];
                         cout << "|";
@@ -2168,7 +2174,7 @@ struct BNaval{
         }
 
 
-        void embarcacaop2(){
+    void embarcacaop2(){
         int linha, coluna;
         char direcao;
         cout << "=========================" << endl;
@@ -2176,7 +2182,7 @@ struct BNaval{
         cout << "=========================" << endl;
         cout << "________Jogador 2________" << endl;
 
-        for(int k = 0; k < 10; k++){
+        for(int k = 9; k < 10; k++){
             if(k < 4){
                 cout << "Inserindo T1 (Um bloco): " <<endl;
                 cout << "Linha desejada (1 ao 10): " << endl;
@@ -2195,7 +2201,7 @@ struct BNaval{
                     cin >> coluna;
                     cin.ignore(80, '\n');
                 }
-                while(game[linha-1][coluna-1] != " "){
+                while(game2[linha-1][coluna-1] != " "){
                     cout << "Posicao indisponivel, escolha outra..." << endl;
                     cout << "Inserindo T1 (Um blocos): " <<endl;
                     cout << "Linha desejada (1 ao 10): " << endl;
@@ -2236,7 +2242,7 @@ struct BNaval{
                     cin.ignore(80, '\n');
                 }
 
-                while(game[linha-1][coluna-1] != " "){
+                while(game2[linha-1][coluna-1] != " "){
                     cout << "Posicao indisponivel, escolha outra..." << endl;
                     stop:
                     cout << "Inserindo T2 (Dois blocos): " <<endl;
@@ -2497,7 +2503,7 @@ struct BNaval{
                                     cout << "Direcao Indisponivel! Alterado para Esquerda!" << endl;
                                     direcao = 'e';
                                 }
-                                 else if(game[linha-2][coluna-1] != " " && game[linha-1][coluna] == " "){
+                                 else if(game2[linha-2][coluna-1] != " " && game2[linha-1][coluna] == " "){
                                     cout << "Direcao Indisponivel! Alterado para Direita!" << endl;
                                     direcao = 'd';
                                 }
@@ -2817,7 +2823,7 @@ struct BNaval{
                     cin >> coluna;
                     cin.ignore(80, '\n');
                 }
-                while(game[linha-1][coluna-1] != " "){
+                while(game2[linha-1][coluna-1] != " "){
                     cout << "Posicao indisponivel, escolha outra..." << endl;
                     retorna1:
                     cout << "Inserindo T3 (Tres blocos): " <<endl;
@@ -3384,7 +3390,7 @@ struct BNaval{
                     cin >> coluna;
                     cin.ignore(80, '\n');
                 }
-                while(game[linha-1][coluna-1] != " "){
+                while(game2[linha-1][coluna-1] != " "){
                     cout << "Posicao indisponivel, escolha outra..." << endl;
                     retorna2:
                     cout << "Inserindo T4 (Quatro blocos): " <<endl;
@@ -3838,9 +3844,10 @@ struct BNaval{
                 cout << i +1<< "|";
                 for (int j = 0; j < 10 ;++j){
                     if(j == 9){
-                        cout << game[i][j];
+                        cout << game2[i][j];
+                        cout << "|";
                     }else{
-                        cout << game[i][j];
+                        cout << game2[i][j];
                         cout << "|";
                     }
                 }
@@ -3856,6 +3863,215 @@ struct BNaval{
          bnavalchama(jogador);
         }
 
+    void jogarp1(){
+
+            int linha, coluna;
+            do{
+                cout << "=====JOGADOR 1=====" << endl;
+                cout << " Faca sua jogada:" << endl;
+                cout << "Linha desejada (1 ao 10): " ;
+                cin >> linha;
+                cin.ignore(80,'\n');
+                cout << "Coluna desejada (1 ao 10): " ;
+                cin >> coluna;
+                cin.ignore(80,'\n');
+
+                if(game2[linha-1][coluna-1] != " "){
+                    game2[linha-1][coluna-1] = "F";
+                    gamemostrap1[linha-1][coluna-1] = "F";
+
+                    cout << "-----------------------" << endl;
+                    cout << "   ";
+                    for(int k = 0; k < 10; ++k){
+                        cout << k+1 << " ";
+                    }
+                    cout << endl;
+                    cout << "-----------------------" << endl;
+                    for(int i = 0; i < 10; ++i){
+                        if(i < 9){
+                            cout << i +1 << " |";
+                        }else
+                        cout << i +1<< "|";
+                        for (int j = 0; j < 10 ;++j){
+                            if(j == 9){
+                                cout << gamemostrap1[i][j];
+                                cout << "|";
+                            }else{
+                                cout << gamemostrap1[i][j];
+                                cout << "|";
+                            }
+                        }
+                        cout << endl;
+                        cout << "-----------------------" << endl;
+                    }
+                    cout << endl;
+
+                    cout << "Voce acertou uma embarcacao!" << endl;
+                    cout << "Tecle enter para continuar..." << endl;
+                    cin.get();
+                    system("cls");
+                }else{
+                    alternaplayer = 2;
+                    game2[linha-1][coluna-1] = "~";
+                    gamemostrap1[linha-1][coluna-1] = "~";
+
+                    cout << "-----------------------" << endl;
+                    cout << "   ";
+                    for(int k = 0; k < 10; ++k){
+                        cout << k+1 << " ";
+                    }
+                    cout << endl;
+                    cout << "-----------------------" << endl;
+                    for(int i = 0; i < 10; ++i){
+                        if(i < 9){
+                            cout << i +1 << " |";
+                        }else
+                        cout << i +1<< "|";
+                        for (int j = 0; j < 10 ;++j){
+                            if(j == 9){
+                                cout << gamemostrap1[i][j];
+                                cout << "|";
+                            }else{
+                                cout << gamemostrap1[i][j];
+                                cout << "|";
+                            }
+                        }
+                        cout << endl;
+                        cout << "-----------------------" << endl;
+                    }
+                    cout << endl;
+
+                    cout << "Nenhuma embarcacao nesta posicao!" << endl;
+                    cout << "Vez do jogador 2!" << endl;
+                    cout << "Tecle enter para continuar..." << endl;
+                    cin.get();
+                    system("cls");
+                }
+            }while(alternaplayer == 1);
+            alternajogador();
+        }
+
+    void jogarp2(){
+
+            int linha, coluna;
+            do{
+                cout << "=====JOGADOR 2=====" << endl;
+                cout << " Faca sua jogada:" << endl;
+                cout << "Linha desejada (1 ao 10): " ;
+                cin >> linha;
+                cin.ignore(80,'\n');
+                cout << "Coluna desejada (1 ao 10): " ;
+                cin >> coluna;
+                cin.ignore(80,'\n');
+
+                if(game[linha-1][coluna-1] != " "){
+                    game[linha-1][coluna-1] = "F";
+                    gamemostrap2[linha-1][coluna-1] = "F";
+
+                    cout << "-----------------------" << endl;
+                    cout << "   ";
+                    for(int k = 0; k < 10; ++k){
+                        cout << k+1 << " ";
+                    }
+                    cout << endl;
+                    cout << "-----------------------" << endl;
+                    for(int i = 0; i < 10; ++i){
+                        if(i < 9){
+                            cout << i +1 << " |";
+                        }else
+                        cout << i +1<< "|";
+                        for (int j = 0; j < 10 ;++j){
+                            if(j == 9){
+                                cout << gamemostrap2[i][j];
+                                cout << "|";
+                            }else{
+                                cout << gamemostrap2[i][j];
+                                cout << "|";
+                            }
+                        }
+                        cout << endl;
+                        cout << "-----------------------" << endl;
+                    }
+                    cout << endl;
+
+                    cout << "Voce acertou uma embarcacao!" << endl;
+                    cout << "Tecle enter para continuar..." << endl;
+                    cin.get();
+                    system("cls");
+                }else{
+                    alternaplayer = 2;
+                    game[linha-1][coluna-1] = "~";
+                    gamemostrap2[linha-1][coluna-1] = "~";
+
+                    cout << "-----------------------" << endl;
+                    cout << "   ";
+                    for(int k = 0; k < 10; ++k){
+                        cout << k+1 << " ";
+                    }
+                    cout << endl;
+                    cout << "-----------------------" << endl;
+                    for(int i = 0; i < 10; ++i){
+                        if(i < 9){
+                            cout << i +1 << " |";
+                        }else
+                        cout << i +1<< "|";
+                        for (int j = 0; j < 10 ;++j){
+                            if(j == 9){
+                                cout << gamemostrap2[i][j];
+                                cout << "|";
+                            }else{
+                                cout << gamemostrap2[i][j];
+                                cout << "|";
+                            }
+                        }
+                        cout << endl;
+                        cout << "-----------------------" << endl;
+                    }
+                    cout << endl;
+
+                    cout << "Nenhuma embarcacao nesta posicao!" << endl;
+                    cout << "Vez do jogador 1!" << endl;
+                    cout << "Tecle enter para continuar..." << endl;
+                    cin.get();
+                    system("cls");
+                }
+            }while(alternaplayer == 2);
+            alternajogador();
+        }
+
+    void alternajogador(){
+
+            cout << "-----------------------" << endl;
+            cout << "   ";
+            for(int k = 0; k < 10; ++k){
+                cout << k+1 << " ";
+            }
+            cout << endl;
+            cout << "-----------------------" << endl;
+            for(int i = 0; i < 10; ++i){
+                if(i < 9){
+                    cout << i +1 << " |";
+                }else
+                cout << i +1<< "|";
+                for (int j = 0; j < 10 ;++j){
+                    if(j == 9){
+                        cout << gamemostra[i][j];
+                        cout << "|";
+                    }else{
+                        cout << gamemostra[i][j];
+                        cout << "|";
+                    }
+                }
+                cout << endl;
+                cout << "-----------------------" << endl;
+            }
+            cout << endl;
+            if(alternaplayer == 1){
+                jogarp1();
+            }else if(alternaplayer == 2){
+                jogarp2();
+            }
+        }
 
 
 
